@@ -13,9 +13,11 @@ class Recipe
   end
 
   def self.most_popular
-    sort_recipes = RecipeCard.all.count{|card| number = card.recipe}
+    card_arr = RecipeCard.all.map{|card| card.recipe}
+    counted_card = card_arr.uniq.map{|el| [el.name, card_arr.count(el)]}
+    ugh = counted_card.to_h
+    ugh.max_by{|k,v| v}[0]
 
-    # sort_recipes.
   end
 
   def users
